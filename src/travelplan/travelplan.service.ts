@@ -29,4 +29,12 @@ export class TravelPlanService {
     async all() {
         return this.travelPlanModel.find().exec();
     }
+
+    async findUserTravelPlan(userId: number){
+        const userTravelPlan = this.travelPlanModel.findOne({userId: userId})
+        if (!userTravelPlan){
+            throw new NotFoundException()
+        }
+        return userTravelPlan
+    }
 }

@@ -9,7 +9,7 @@ export class TravelPlanController {
     test(@Body() travelPlanPayloadDto: TravelPlanPayloadDto) {
         return this.travelPlanService.addTravelPlan(travelPlanPayloadDto)
     }
-    
+
     @Patch('/update')
     async updateTravelPlan(@Body() travelPlanPayloadDto: TravelPlanPayloadDto){
         return this.travelPlanService.update(travelPlanPayloadDto)
