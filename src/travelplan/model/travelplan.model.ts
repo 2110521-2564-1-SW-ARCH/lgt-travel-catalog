@@ -7,8 +7,9 @@ export type TravelPlanDocument = TravelPlan & Document;
 @Schema()
 export class TravelPlan{
     @Prop()
-    locationName: string
-
+    userId: number
+    @Prop()
+    locationId: number[]
     // @Prop({ type: [{ type: SchemaTypes.ObjectId, ref: 'Location' }] })
     // plans: Location[];
 }

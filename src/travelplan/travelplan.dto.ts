@@ -1,7 +1,10 @@
-import { IsString, IsNotEmpty } from "class-validator";
+import { IsNotEmpty, IsNumber } from "class-validator";
 
 export class TravelPlanPayloadDto{
-    @IsString()
+    @IsNumber()
     @IsNotEmpty()
-    locationName: string
+    userId: number
+    @IsNumber()
+    @IsNotEmpty()
+    locationId: number[]
 }

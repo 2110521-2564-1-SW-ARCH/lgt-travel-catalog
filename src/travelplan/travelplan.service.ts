@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { TravelPlan, TravelPlanDocument } from './model/travelplan.model';
 import { Model } from 'mongoose';
@@ -12,8 +12,18 @@ export class TravelPlanService {
     ) {}
 
     async addTravelPlan(travelPlanPayloadDto: TravelPlanPayloadDto): Promise<TravelPlanDocument> {
-        const createdTravelPlan = new this.travelPlanModel(travelPlanPayloadDto);
-        return await createdTravelPlan.save();
+        const createdTravelPlan = await new this.travelPlanModel(travelPlanPayloadDto).save();
+        return createdTravelPlan;
+    }
+
+    async update(updateData: TravelPlanPayloadDto){
+        const travelPlan = await this.travelPlanModel
+        .findOneAndUpdate({userId:updateData.userId},updateData)
+        .populate('locationId')
+        if (!travelPlan){
+            throw new NotFoundException()
+        }
+        return travelPlan
     }
 
     async all() {

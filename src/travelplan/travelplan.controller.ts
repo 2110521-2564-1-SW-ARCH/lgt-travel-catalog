@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Patch, Post } from "@nestjs/common";
 import { TravelPlanPayloadDto } from "./travelplan.dto";
 import { TravelPlanService } from "./travelplan.service";
 
@@ -7,8 +7,12 @@ export class TravelPlanController {
     constructor(private travelPlanService: TravelPlanService){}
     @Post('/add')
     test(@Body() travelPlanPayloadDto: TravelPlanPayloadDto) {
-        const travelPlanResponse = this.travelPlanService.addTravelPlan(travelPlanPayloadDto)
-        return travelPlanResponse
+        return this.travelPlanService.addTravelPlan(travelPlanPayloadDto)
+    }
+    
+    @Patch('/update')
+    async updateTravelPlan(@Body() travelPlanPayloadDto: TravelPlanPayloadDto){
+        return this.travelPlanService.update(travelPlanPayloadDto)
     }
 
     @Get()
