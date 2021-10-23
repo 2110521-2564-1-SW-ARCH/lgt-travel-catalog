@@ -7,8 +7,7 @@ import { TravelPlanModule } from './travelplan/travelplan.module';
 
 @Module({
   imports: [
-    // TravelPlanModule,
-    ReviewModule,
+    TravelPlanModule,
     MongooseModule.forRoot('mongodb+srv://admin:travel1234@cluster0.poyct.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
   ],
   controllers: [AppController],

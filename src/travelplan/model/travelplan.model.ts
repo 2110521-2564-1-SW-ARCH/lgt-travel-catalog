@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { SchemaTypes } from "mongoose";
-import { Location } from "./location.model";
 import { Document } from "mongoose";
 
 export type TravelPlanDocument = TravelPlan & Document;
