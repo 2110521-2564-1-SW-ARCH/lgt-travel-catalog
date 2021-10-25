@@ -24,15 +24,22 @@ jobs:
           token: ${{secrets.PASS_GIT}}
       - name: Deploy nest js
         uses: appleboy/ssh-action@v0.1.2
+        env:
+          MONGODB_URI: ${{secrets.MONGODB_URI}}
+          RABBITMQ_URL: ${{secrets.RABBITMQ_URL}}
         with:
           host: ${{secrets.SSH_HOST}}
           key: ${{secrets.SSH_KEY}}
           username: ${{secrets.SSH_USERNAME}}
+          envs: MONGODB_URI,RABBITMQ_URL
           script: |
             rm -R -f lgt-travel-catalog
             git clone https://${{secrets.USERNAME_GIT}}:${{secrets.PASS_GIT}}@github.com/2110521-2564-1-SW-ARCH/lgt-travel-catalog.git
             cd lgt-travel-catalog
             docker-compose down -v
+            touch .env
+            echo "MONGODB_URI=$MONGODB_URI" >> .env
+            echo "RABBITMQ_URL=$RABBITMQ_URL" >> .env
             docker-compose build
-            docker-compose up  
+            docker-compose up -d
             echo 'Deployment prod complete'
