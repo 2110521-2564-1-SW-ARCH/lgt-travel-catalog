@@ -27,10 +27,10 @@ export class TravelPlanController {
     //     return this.travelPlanService.update(travelPlanPayloadDto)
     // }
 
-    @EventPattern('delete-plan')
-    async deleteTravelPlan(@Body() userid: number){
-        return this.travelPlanService.delete(userid);
-    }
+    // @EventPattern('delete-plan')
+    // async deleteTravelPlan(@Body() userid: number){
+    //     return this.travelPlanService.delete(userid);
+    // }
 
     // @Get(':userId')
     // async getUserTravelPlan(@Param('userId') userId: number) {

@@ -41,12 +41,12 @@ export class TravelPlanService {
     //     return travelPlan
     // }
 
-    async delete(userid: number){
-        const deletedPlan = await this.travelPlanModel.deleteOne({userId:userid});
-        if (!deletedPlan){
-            throw new NotFoundException()
-        }
-        return deletedPlan
-    }
+    // async delete(userid: number){
+    //     const deletedPlan = await this.travelPlanModel.deleteOne({userId:userid});
+    //     if (!deletedPlan){
+    //         throw new NotFoundException()
+    //     }
+    //     return deletedPlan
+    // }
 
 }
