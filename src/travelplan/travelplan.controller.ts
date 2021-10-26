@@ -8,35 +8,33 @@ import { TravelPlanService } from "./travelplan.service";
 export class TravelPlanController {
     constructor(
         private travelPlanService: TravelPlanService
-    ){
-    }
-    private travelPlanPayloadDto: TravelPlanPayloadDto = {userId:0,locationId:[]}
-    @Post('/add')
-    saveTravelPlan(@Body() locationsPayloadDto: LocationsPayloadDto) {
-        this.travelPlanPayloadDto.locationId = locationsPayloadDto.locationId
-        return this.travelPlanService.addTravelPlan(this.travelPlanPayloadDto)
-    }
+    ){}
+    // private travelPlanPayloadDto: TravelPlanPayloadDto = {userId:0,locationId:[]}
+    // @Post('/add')
+    // saveTravelPlan(@Body() locationsPayloadDto: LocationsPayloadDto) {
+    //     this.travelPlanPayloadDto.locationId = locationsPayloadDto.locationId
+    //     return this.travelPlanService.addTravelPlan(this.travelPlanPayloadDto)
+    // }
     
-    @EventPattern('getCurrentUserId')
-    async getUserId(uid: number) {
-        this.travelPlanPayloadDto.userId = uid
-        console.log(uid)
-        this.saveTravelPlan({locationId:[10500,10200]})
+    @EventPattern('save-plan')
+    async savePlan(travelPlanPayloadDto: TravelPlanPayloadDto) {
+        console.log(travelPlanPayloadDto)
+        return this.travelPlanService.addTravelPlan(travelPlanPayloadDto)
     }
 
-    @Patch('/update')
-    async updateTravelPlan(@Body() travelPlanPayloadDto: TravelPlanPayloadDto){
-        return this.travelPlanService.update(travelPlanPayloadDto)
+    // @EventPattern('update-plan')
+    // async updateTravelPlan(@Body() travelPlanPayloadDto: TravelPlanPayloadDto){
+    //     return this.travelPlanService.update(travelPlanPayloadDto)
+    // }
+
+    @EventPattern('delete-plan')
+    async deleteTravelPlan(@Body() userid: number){
+        return this.travelPlanService.delete(userid);
     }
 
-    @Get(':userId')
-    async getUserTravelPlan(@Param('userId') userId: number) {
-        return this.travelPlanService.findUserTravelPlan(userId)
-    }
-    @Get()
-    async all() {
-        return this.travelPlanService.all();
-    }
-  
+    // @Get(':userId')
+    // async getUserTravelPlan(@Param('userId') userId: number) {
+    //     return this.travelPlanService.findUserTravelPlan(userId)
+    // }
 
 }
