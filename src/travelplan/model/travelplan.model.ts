@@ -1,28 +1,20 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, ObjectId } from "mongoose";
+import { ILocation } from "../interface/location.interface";
 
 export type TravelPlanDocument = TravelPlan & Document;
 
-// @Schema({_id: false})
-// class Plan {
-//     @Prop()
-//     locationId: number[]
-// }
-// const PlanSchema = SchemaFactory.createForClass(Plan)
-
-// interface Plan {
-//     planName: string;
-//     locationId: number[];
-// }
 
 @Schema()
 export class TravelPlan{
-    @Prop({unique: true})
+    @Prop({unique:true})
+    planId: number
+    @Prop()
     userName: string
     @Prop()
     planName: string
     @Prop()
-    locations: number[]
+    locations: ILocation[]
     @Prop()
     description: string
 }

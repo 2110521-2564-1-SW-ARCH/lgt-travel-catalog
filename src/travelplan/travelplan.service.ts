@@ -12,23 +12,29 @@ export class TravelPlanService {
     ) {}
 
     async addTravelPlan(travelPlanPayloadDto: TravelPlanPayloadDto): Promise<TravelPlanDocument> {
-        const userTravelPlan = await this.travelPlanModel.findOne({userId:travelPlanPayloadDto.userId});
-        if (!userTravelPlan){
-            const newUserPlan = new this.travelPlanModel(travelPlanPayloadDto)
-            const result = await newUserPlan.save()
-            return result;
-        }
-        else {
-            const userNewPlan = userTravelPlan.plan.concat(travelPlanPayloadDto.plan);
-            const newUserPlan = new this.travelPlanModel({
-                userId: travelPlanPayloadDto.userId,
-                plan: userNewPlan
-            },{_id:false})
-            const res = await this.travelPlanModel
-            .findOneAndUpdate({userId:travelPlanPayloadDto.userId},newUserPlan)
-            .populate('plan')
-            return res
-        }
+        //const userTravelPlan = await this.travelPlanModel.findOne({userId:travelPlanPayloadDto.userName});
+        // if (!userTravelPlan){
+        const newUserPlan = new this.travelPlanModel({
+            planId: Math.random(),
+            userName: travelPlanPayloadDto.userName,
+            planName: travelPlanPayloadDto.planName,
+            locations: travelPlanPayloadDto.locations,
+            description: travelPlanPayloadDto.description
+        })
+        const result = await newUserPlan.save()
+        return result;
+        // }
+        // else {
+        //     const userNewPlan = userTravelPlan.locations.concat(travelPlanPayloadDto.locations);
+        //     const newUserPlan = new this.travelPlanModel({
+        //         userId: travelPlanPayloadDto.userId,
+        //         plan: userNewPlan
+        //     },{_id:false})
+        //     const res = await this.travelPlanModel
+        //     .findOneAndUpdate({userId:travelPlanPayloadDto.userId},newUserPlan)
+        //     .populate('plan')
+        //     return res
+        // }
     }
 
     // async update(updateData: TravelPlanPayloadDto){
