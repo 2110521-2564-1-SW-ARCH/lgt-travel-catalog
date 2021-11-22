@@ -10,19 +10,19 @@ export type TravelPlanDocument = TravelPlan & Document;
 // }
 // const PlanSchema = SchemaFactory.createForClass(Plan)
 
-interface Plan {
-    id: ObjectId;
-    locationId: number[];
-}
+// interface Plan {
+//     planName: string;
+//     locationId: number[];
+// }
 
 @Schema()
 export class TravelPlan{
     @Prop({unique: true})
-    userId: number
+    userName: string
     @Prop()
     planName: string
     @Prop()
-    plan: Plan[]
+    locations: number[]
     @Prop()
     description: string
 }
