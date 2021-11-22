@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, ObjectId } from "mongoose";
-import { Transform } from 'class-transformer';
 
 export type TravelPlanDocument = TravelPlan & Document;
 
@@ -21,7 +20,11 @@ export class TravelPlan{
     @Prop({unique: true})
     userId: number
     @Prop()
+    planName: string
+    @Prop()
     plan: Plan[]
+    @Prop()
+    description: string
 }
 
 export const TravelPlanSchema = SchemaFactory.createForClass(TravelPlan);

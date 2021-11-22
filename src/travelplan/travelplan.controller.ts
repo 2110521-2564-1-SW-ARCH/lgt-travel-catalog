@@ -1,6 +1,5 @@
 import { Body, Controller, Get, Inject, Param, Patch, Post } from "@nestjs/common";
 import { EventPattern } from "@nestjs/microservices";
-import { LocationsPayloadDto } from "./locations.dto";
 import { TravelPlanPayloadDto } from "./travelplan.dto";
 import { TravelPlanService } from "./travelplan.service";
 
