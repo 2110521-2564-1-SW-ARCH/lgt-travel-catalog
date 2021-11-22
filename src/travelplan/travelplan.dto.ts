@@ -8,7 +8,7 @@ import { isValidObjectId, ObjectId } from "mongoose";
 // }
 
 export class TravelPlanPayloadDto{
-    @IsNumber()
+    @IsString()
     @IsNotEmpty()
     userName: string
     @IsString()
