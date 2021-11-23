@@ -17,7 +17,8 @@ export class TravelPlanService {
             userName: travelPlanPayloadDto.userName,
             planName: travelPlanPayloadDto.planName,
             locations: travelPlanPayloadDto.locations,
-            description: travelPlanPayloadDto.description
+            description: travelPlanPayloadDto.description,
+            isPublic: travelPlanPayloadDto.isPublic
         })
         const result = await newUserPlan.save()
         return result;

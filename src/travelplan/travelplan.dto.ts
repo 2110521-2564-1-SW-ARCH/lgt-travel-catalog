@@ -1,5 +1,5 @@
 import { Prop, Schema } from "@nestjs/mongoose";
-import { IsArray, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsArray, IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { isValidObjectId, ObjectId } from "mongoose";
 import { ILocation } from "./interface/location.interface";
 
@@ -20,4 +20,6 @@ export class TravelPlanPayloadDto{
     locations: ILocation[]
     @IsString()
     description: string
+    @IsBoolean()
+    isPublic: boolean
 }

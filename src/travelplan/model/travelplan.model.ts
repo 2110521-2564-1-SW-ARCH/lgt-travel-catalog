@@ -17,6 +17,8 @@ export class TravelPlan{
     locations: ILocation[]
     @Prop()
     description: string
+    @Prop()
+    isPublic: boolean
 }
 
 export const TravelPlanSchema = SchemaFactory.createForClass(TravelPlan);
