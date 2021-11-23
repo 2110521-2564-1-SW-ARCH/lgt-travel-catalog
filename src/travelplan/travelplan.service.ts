@@ -12,29 +12,16 @@ export class TravelPlanService {
     ) {}
 
     async addTravelPlan(travelPlanPayloadDto: TravelPlanPayloadDto): Promise<TravelPlanDocument> {
-        const createdTravelPlan = await new this.travelPlanModel(travelPlanPayloadDto).save();
-        return createdTravelPlan;
+        const newUserPlan = new this.travelPlanModel({
+            planId: Math.random(),
+            userName: travelPlanPayloadDto.userName,
+            planName: travelPlanPayloadDto.planName,
+            locations: travelPlanPayloadDto.locations,
+            description: travelPlanPayloadDto.description
+        })
+        const result = await newUserPlan.save()
+        return result;
     }
 
-    async update(updateData: TravelPlanPayloadDto){
-        const travelPlan = await this.travelPlanModel
-        .findOneAndUpdate({userId:updateData.userId},updateData)
-        .populate('locationId')
-        if (!travelPlan){
-            throw new NotFoundException()
-        }
-        return travelPlan
-    }
 
-    async all() {
-        return this.travelPlanModel.find().exec();
-    }
-
-    async findUserTravelPlan(userId: number){
-        const userTravelPlan = this.travelPlanModel.findOne({userId: userId})
-        if (!userTravelPlan){
-            throw new NotFoundException()
-        }
-        return userTravelPlan
-    }
 }
